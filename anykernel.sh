@@ -42,6 +42,13 @@ dump_boot;
 write_boot;
 ## end boot install
 
+## update default.prop
+mount -o rw,remount -t auto /system;
+mount -o rw,remount -t auto /vendor;
+patch_prop /vendor/default.prop "ro.surface_flinger.use_content_detection_for_refresh_rate" "true";
+patch_prop /vendor/default.prop "ro.surface_flinger.set_display_power_timer_ms" "1000";
+patch_prop /vendor/default.prop "ro.surface_flinger.set_idle_timer_ms" "80";
+patch_prop /vendor/default.prop "ro.surface_flinger.set_touch_timer_ms" "200";
 
 # shell variables
 #block=vendor_boot;
